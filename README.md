@@ -27,4 +27,10 @@ def filter_on(df, nm, h_o_a, tm):
         raise TypeError('Error')
 ```
 
+Let's test our filter_on function. We will only want to filter out the portion of our data frame that contains **Stephen Curry** in the **away** team.
 
+```
+# testing the filter_on function
+x = filter_on(df, 'Stephen Curry', 'away', 'GSW')
+x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
+```
