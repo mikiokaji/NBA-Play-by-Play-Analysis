@@ -97,3 +97,37 @@ test_df
 ```
 
 ![img4](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img4.png)
+
+Applying the eFG function to the above data frame should return 0.5 according to the formula.
+FGM = 5, 3PM = 0, FGA = 10. Therefore eFG = (5 + 0.5 * 0) / 10 = 0.5.
+
+```
+x = eFG(test_df)
+print(x)
+```
+
+Looks like our eFG function has worked!
+
+Finally, we will write a function to return the relative eFG% and a few more relevant pieces of information. We are interested in returning the number of shots attempted by teammates while a player is on/off the court. If there’s a large discrepancy, which indicates that a player is either on the court or off the court for the vast majority of the game, the relative eFG% may be unreliable due to random fluctuations. We will want to account for that in our analysis below.
+
+```
+def eFG_Ratio(df, nm, h_o_a, tm):
+
+    df_on = filter_on(df, nm, h_o_a, tm)
+    temp_on = filter_eFG(df_on, nm, tm)
+    eFG_on = eFG(temp_on)
+    
+    df_off = filter_off(df, nm, h_o_a, tm)
+    temp_off = filter_eFG(df_off, nm, tm)
+    eFG_off = eFG(temp_off)
+    
+    eFG_Ratio = eFG_on / eFG_off
+    
+    return eFG_Ratio
+```
+
+```
+# testing the eFG_Ratio function
+x = eFG_Ratio(df, 'LeBron James', 'home', 'CLE')
+print(x)
+```
