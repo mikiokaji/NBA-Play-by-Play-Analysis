@@ -15,6 +15,7 @@ We will create some functions to help with our analysis.
 
 The filter_on function below will filter the game's data frame down to just the records for which a given player is on the court.
 
+```
 def filter_on(df, nm, h_o_a, tm):
     if(h_o_a == 'home'):
         row = df[((df['h1'] == nm) | (df['h2'] == nm) | (df['h3'] == nm) | (df['h4'] == nm) | (df['h5'] == nm)) & (df['Home'] == tm)]
@@ -24,3 +25,6 @@ def filter_on(df, nm, h_o_a, tm):
         return row
     else:
         raise TypeError('Error')
+```
+
+
