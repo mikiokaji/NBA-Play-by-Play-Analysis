@@ -34,3 +34,66 @@ Let's test our filter_on function. We will only want to filter out the portion o
 x = filter_on(df, 'Stephen Curry', 'away', 'GSW')
 x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
 ```
+
+![img1](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img1.png)
+
+Looks like our filter_on function has worked!
+
+The filter_off function below will do the same for when a given player is off the court. For this function, we will need to feed in the player's team name as one of the inputs because we do not want to filter out the part of the dataframe that is not the player's team.
+
+```
+def filter_off(df, nm, h_o_a, tm):
+    if(h_o_a == 'home'):
+        row = df[(df['h1'] != nm) & (df['h2'] != nm) & (df['h3'] != nm) & (df['h4'] != nm) & (df['h5'] != nm) & (df['Home'] == tm)]
+        return row
+    elif(h_o_a == 'away'):
+        row = df[(df['a1'] != nm) & (df['a2'] != nm) & (df['a3'] != nm) & (df['a4'] != nm) & (df['a5'] != nm) & (df['Away'] == tm)]
+        return row
+    else:
+        raise TypeError('Error')
+```
+
+```
+# testing the filter_off function
+x = filter_off(df, 'Stephen Curry', 'home', 'GSW')
+x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5', 'Home', 'Away']]
+```
+
+![img2](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png)
+
+In order to describe success that certain star players bring on the court, we have chosen to focus on the shooting percentage of *just the teammates* while a player is on vs. off the court. The filter_eFG function below will filter to just the shots attempted or made by the player's team that were **not** attempted/made by the player himself.
+
+```
+def filter_eFG(df, nm = 'name', tm = 'teamAbbrev'):
+        return df[(df['player'] != nm) & (df['team'] == tm) & ((df['event_type'] == 'shot') | (df['event_type'] == 'miss'))]
+```
+
+```
+# testing the filter_eFG function
+x = filter_eFG(df, 'Stephen Curry', 'GSW')
+x[['player', 'event_type', 'team', 'h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
+```
+
+![img3](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img3.png)
+
+We will also create a function called eFG to calculate the eFG: `eFG% = (FGM + 0.5 * 3PM) / FGA`
+- Field Goals Made (**FGM**): The number of field goals that a player or team has made. This includes both 2 pointers and 3 pointers
+- 3 Point Field Goals Made (**3PM**): The number of 3 point field goals that a player or team has made
+- Field Goals Attempted (**FGA**): The number of field goals that a player or team has attempted. This includes both 2 pointers and 3 pointers
+
+```
+def eFG(df):
+    numerator = df.loc[df['event_type'] == 'shot', 'points'].count() + 0.5 * df.loc[df['points'] == 3, 'points'].count()
+    denominator = df.loc[df['event_type'] == 'shot', 'points'].count() + df.loc[df['event_type'] == 'miss', 'points'].count()
+    eFG = (numerator) / (denominator)
+    return eFG
+```
+
+```
+# testing the eFG function
+test_df = pd.DataFrame({'event_type': ['shot', 'shot', 'shot', 'shot', 'shot', 'miss', 'miss', 'miss', 'miss', 'miss'],
+                   'points': [2, 2, 2, 2, 2, 0, 0, 0, 0, 0]})
+test_df
+```
+
+![img4](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img4.png)
