@@ -104,6 +104,7 @@ FGM = 5, 3PM = 0, FGA = 10. Therefore eFG = (5 + 0.5 * 0) / 10 = 0.5.
 ```
 x = eFG(test_df)
 print(x)
+0.5
 ```
 
 Looks like our eFG function has worked!
@@ -130,4 +131,35 @@ def eFG_Ratio(df, nm, h_o_a, tm):
 # testing the eFG_Ratio function
 x = eFG_Ratio(df, 'LeBron James', 'home', 'CLE')
 print(x)
+1.116782109851913
 ```
+
+Let's create a test for the eFG_Ratio function. The test data frame below contains only two types of events (i.e., 'shot' and 'miss'). We will be focusing on how the presence of SC affects the eFG% of the rest of the team. The player who is making the shot/missing the shot will be DG throughout the test.
+
+When SC is on the court, the player makes one 2-pt shot and one 3-pt shot with a 2/4 shooting, giving a 0.625 eFG%. When SC is off the court, the player makes two 3-pt shots with a 2/4 shooting, giving a 0.75 eFG%. eFG_Ratio function will calculate the ratio between eFG_on to eFG_off. As such, the eFG_Ratio function is expected to spit out 0.625 / 0.75, which is **0.833**.
+
+## Time to plot!
+
+We will take a look at the ratio of eFG% ratio of each player from the following teams: Golden State Warriors, Houston Rockets, Cleveland Cavaliers, and Boston Celtics. We will select these four teams for the analysis as they are all winners of the Conference Semifinals in the 2018 NBA playoffs.
+
+By plotting eFG ratio of each player for these teams, we are attempting to understand whether a player's presence on the couurt makes his teammates more effective shooters. Star players like Stephen Curry, LeBron James, and James Harden tend to draw a lot of attention from the other team's defenders, and that attention may give more opportunities for their teammates for a better shot. As an example, Golden State Warriors designs a lot of plays based on making Stephen Curry the decoy on the court, freeing up other shooters like Klay Thompson.
+
+For the purpose of the project, we will define star players for each of these four teams based on their popularity and past NBA All-Star Game appearance.
+
+- Golden State Warriors: Stephen Curry, Kevin Durant
+- Houston Rockets: James Harden, Chris Paul
+- Cleveland Cavaliers: LeBron James
+- Boston Celtics: Jayson Tatum, Kyrie Irving
+
+Finally, we will only be selecting data for **home** games only.
+
+![img5](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img5.png)
+![img6](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img6.png)
+![img7](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img7.png)
+![img8](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img8.png)
+
+## Summary and Future Outlook
+
+From the plots, we can see that all of the **star players** for the four teams had an eFG ratio larger than 1, meaning that their presence on the court made their teammates shoot better than when they were off the court. For example, Kevin Durant from the Golden State Warriors had an eFG ratio of 1.11, suggesting that Durant's presence on the court made his teammates shoot 11% better compared to when he was off the court.
+
+One factor that we did not account for in this analysis is the time each player has spent on the court. The standard for full credibility is when the player spent an equal amount of time on the court as off the court. The more disproportionate the on-the-court plays are vs. the off-the-court plays, the lower the credibility. This might explain why players that are not commonly considered as star players such as Kendrick Perkins from Cleveland Cavaliers or RJ Hunter from the Houston Rockets showed an unexpectedly high eFG ratio in the analysis. We could incorporate the credibility facotr in our future analysis.
