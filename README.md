@@ -154,8 +154,11 @@ For the purpose of the project, we will define star players for each of these fo
 Finally, we will only be selecting data for **home** games only.
 
 ![img5](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img5.png)
+
 ![img6](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img6.png)
+
 ![img7](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img7.png)
+
 ![img8](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img8.png)
 
 ## Summary and Future Outlook
