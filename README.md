@@ -61,7 +61,7 @@ x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5', 'Home', 'Away']]
 
 ![img2](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png)
 <p align="center">
-    <img src="https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png">
+    <img src="https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png" width=600>
 </p>
 
 In order to describe success that certain star players bring on the court, we have chosen to focus on the shooting percentage of *just the teammates* while a player is on vs. off the court. The filter_eFG function below will filter to just the shots attempted or made by the player's team that were **not** attempted/made by the player himself.
