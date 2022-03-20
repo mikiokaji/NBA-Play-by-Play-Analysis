@@ -15,7 +15,7 @@ We will create some functions to help with our analysis.
 
 The filter_on function below will filter the game's data frame down to just the records for which a given player is on the court.
 
-```
+```python
 def filter_on(df, nm, h_o_a, tm):
     if(h_o_a == 'home'):
         row = df[((df['h1'] == nm) | (df['h2'] == nm) | (df['h3'] == nm) | (df['h4'] == nm) | (df['h5'] == nm)) & (df['Home'] == tm)]
@@ -53,22 +53,25 @@ def filter_off(df, nm, h_o_a, tm):
         raise TypeError('Error')
 ```
 
-```
+```python
 # testing the filter_off function
 x = filter_off(df, 'Stephen Curry', 'home', 'GSW')
 x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5', 'Home', 'Away']]
 ```
 
 ![img2](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png)
+<p align="center">
+    <img src="https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png">
+</p>
 
 In order to describe success that certain star players bring on the court, we have chosen to focus on the shooting percentage of *just the teammates* while a player is on vs. off the court. The filter_eFG function below will filter to just the shots attempted or made by the player's team that were **not** attempted/made by the player himself.
 
-```
+```python
 def filter_eFG(df, nm = 'name', tm = 'teamAbbrev'):
         return df[(df['player'] != nm) & (df['team'] == tm) & ((df['event_type'] == 'shot') | (df['event_type'] == 'miss'))]
 ```
 
-```
+```python
 # testing the filter_eFG function
 x = filter_eFG(df, 'Stephen Curry', 'GSW')
 x[['player', 'event_type', 'team', 'h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
@@ -81,7 +84,7 @@ We will also create a function called eFG to calculate the eFG: `eFG% = (FGM + 0
 - 3 Point Field Goals Made (**3PM**): The number of 3 point field goals that a player or team has made
 - Field Goals Attempted (**FGA**): The number of field goals that a player or team has attempted. This includes both 2 pointers and 3 pointers
 
-```
+```python
 def eFG(df):
     numerator = df.loc[df['event_type'] == 'shot', 'points'].count() + 0.5 * df.loc[df['points'] == 3, 'points'].count()
     denominator = df.loc[df['event_type'] == 'shot', 'points'].count() + df.loc[df['event_type'] == 'miss', 'points'].count()
@@ -89,7 +92,7 @@ def eFG(df):
     return eFG
 ```
 
-```
+```python
 # testing the eFG function
 test_df = pd.DataFrame({'event_type': ['shot', 'shot', 'shot', 'shot', 'shot', 'miss', 'miss', 'miss', 'miss', 'miss'],
                    'points': [2, 2, 2, 2, 2, 0, 0, 0, 0, 0]})
@@ -101,7 +104,7 @@ test_df
 Applying the eFG function to the above data frame should return 0.5 according to the formula.
 FGM = 5, 3PM = 0, FGA = 10. Therefore eFG = (5 + 0.5 * 0) / 10 = 0.5.
 
-```
+```python
 x = eFG(test_df)
 print(x)
 0.5
@@ -111,7 +114,7 @@ Looks like our eFG function has worked!
 
 Finally, we will write a function to return the relative eFG% and a few more relevant pieces of information. We are interested in returning the number of shots attempted by teammates while a player is on/off the court. If there’s a large discrepancy, which indicates that a player is either on the court or off the court for the vast majority of the game, the relative eFG% may be unreliable due to random fluctuations. We will want to account for that in our analysis below.
 
-```
+```python
 def eFG_Ratio(df, nm, h_o_a, tm):
 
     df_on = filter_on(df, nm, h_o_a, tm)
@@ -127,7 +130,7 @@ def eFG_Ratio(df, nm, h_o_a, tm):
     return eFG_Ratio
 ```
 
-```
+```python
 # testing the eFG_Ratio function
 x = eFG_Ratio(df, 'LeBron James', 'home', 'CLE')
 print(x)
