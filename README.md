@@ -29,7 +29,7 @@ def filter_on(df, nm, h_o_a, tm):
 
 Let's test our filter_on function. We will only want to filter out the portion of our data frame that contains **Stephen Curry** in the **away** team.
 
-```
+```python
 # testing the filter_on function
 x = filter_on(df, 'Stephen Curry', 'away', 'GSW')
 x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
@@ -41,7 +41,7 @@ Looks like our filter_on function has worked!
 
 The filter_off function below will do the same for when a given player is off the court. For this function, we will need to feed in the player's team name as one of the inputs because we do not want to filter out the part of the dataframe that is not the player's team.
 
-```
+```python
 def filter_off(df, nm, h_o_a, tm):
     if(h_o_a == 'home'):
         row = df[(df['h1'] != nm) & (df['h2'] != nm) & (df['h3'] != nm) & (df['h4'] != nm) & (df['h5'] != nm) & (df['Home'] == tm)]
