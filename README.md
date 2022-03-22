@@ -107,7 +107,6 @@ FGM = 5, 3PM = 0, FGA = 10. Therefore eFG = (5 + 0.5 * 0) / 10 = 0.5.
 ```python
 x = eFG(test_df)
 print(x)
-0.5
 ```
 
 Looks like our eFG function has worked!
