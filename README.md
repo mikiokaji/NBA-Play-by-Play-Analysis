@@ -13,7 +13,7 @@ After some careful thinking, we have decided to focus on teammmates' Effective F
 ## Custom Functions
 We will create some functions to help with our analysis.
 
-The filter_on function below will filter the game's data frame down to just the records for which a given player is on the court.
+The *filter_on* function below will filter the game's data frame down to just the records for which a given player is on the court.
 
 ```python
 def filter_on(df, nm, h_o_a, tm):
@@ -27,7 +27,7 @@ def filter_on(df, nm, h_o_a, tm):
         raise TypeError('Error')
 ```
 
-Let's test our filter_on function. We will only want to filter out the portion of our data frame that contains **Stephen Curry** in the **away** team.
+Let's test our *filter_on* function. We will only want to filter out the portion of our data frame that contains **Stephen Curry** in the **away** team.
 
 ```python
 # testing the filter_on function
@@ -37,9 +37,9 @@ x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
 
 ![img1](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img1.png)
 
-Looks like our filter_on function has worked!
+Looks like our *filter_on* function has worked!
 
-The filter_off function below will do the same for when a given player is off the court. For this function, we will need to feed in the player's team name as one of the inputs because we do not want to filter out the part of the dataframe that is not the player's team.
+The *filter_off* function below will do the same for when a given player is off the court. For this function, we will need to feed in the player's team name as one of the inputs because we do not want to filter out the part of the dataframe that is not the player's team.
 
 ```python
 def filter_off(df, nm, h_o_a, tm):
@@ -62,7 +62,7 @@ x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5', 'Home', 'Away']]
 ![img2](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png)
 
 
-In order to describe success that certain star players bring on the court, we have chosen to focus on the shooting percentage of *just the teammates* while a player is on vs. off the court. The filter_eFG function below will filter to just the shots attempted or made by the player's team that were **not** attempted/made by the player himself.
+In order to describe success that certain star players bring on the court, we have chosen to focus on the shooting percentage of *just the teammates* while a player is on vs. off the court. The *filter_eFG* function below will filter to just the shots attempted or made by the player's team that were **not** attempted/made by the player himself.
 
 ```python
 def filter_eFG(df, nm = 'name', tm = 'teamAbbrev'):
@@ -77,7 +77,7 @@ x[['player', 'event_type', 'team', 'h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3
 
 ![img3](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img3.png)
 
-We will also create a function called eFG to calculate the eFG: `eFG% = (FGM + 0.5 * 3PM) / FGA`
+We will also create a function called *eFG* to calculate the eFG: `eFG% = (FGM + 0.5 * 3PM) / FGA`
 - Field Goals Made (**FGM**): The number of field goals that a player or team has made. This includes both 2 pointers and 3 pointers
 - 3 Point Field Goals Made (**3PM**): The number of 3 point field goals that a player or team has made
 - Field Goals Attempted (**FGA**): The number of field goals that a player or team has attempted. This includes both 2 pointers and 3 pointers
@@ -101,17 +101,20 @@ test_df
     <img src="https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img4.png" height=450, width=250>
 </p>
 
-Applying the eFG function to the above data frame should return 0.5 according to the formula.
+Applying the *eFG* function to the above data frame should return 0.5 according to the formula.
 FGM = 5, 3PM = 0, FGA = 10. Therefore eFG = (5 + 0.5 * 0) / 10 = 0.5.
 
 ```python
 x = eFG(test_df)
 print(x)
+0.5
 ```
 
-Looks like our eFG function has worked!
+Looks like our *eFG* function has worked!
 
-Finally, we will write a function to return the relative eFG% and a few more relevant pieces of information. We are interested in returning the number of shots attempted by teammates while a player is on/off the court. If there’s a large discrepancy, which indicates that a player is either on the court or off the court for the vast majority of the game, the relative eFG% may be unreliable due to random fluctuations. We will want to account for that in our analysis below.
+Finally, we will write a function to return the relative eFG% and a few more relevant pieces of information. We are interested in returning the number of shots attempted by teammates while a player is on/off the court.
+
+<!-- If there’s a large discrepancy, which indicates that a player is either on the court or off the court for the vast majority of the game, the relative eFG% may be unreliable due to random fluctuations. We will want to account for that in our analysis below. -->
 
 ```python
 def eFG_Ratio(df, nm, h_o_a, tm):
@@ -136,9 +139,70 @@ print(x)
 1.116782109851913
 ```
 
-Let's create a test for the eFG_Ratio function. The test data frame below contains only two types of events (i.e., 'shot' and 'miss'). We will be focusing on how the presence of SC affects the eFG% of the rest of the team. The player who is making the shot/missing the shot will be DG throughout the test.
+Let's create a test for the *eFG_Ratio* function. The test data frame below contains only two types of events (i.e., 'shot' and 'miss'). We will be focusing on how the presence of SC affects the eFG% of the rest of the team. The player who is making the shot/missing the shot will be DG throughout the test.
 
-When SC is on the court, the player makes one 2-pt shot and one 3-pt shot with a 2/4 shooting, giving a 0.625 eFG%. When SC is off the court, the player makes two 3-pt shots with a 2/4 shooting, giving a 0.75 eFG%. eFG_Ratio function will calculate the ratio between eFG_on to eFG_off. As such, the eFG_Ratio function is expected to spit out 0.625 / 0.75, which is **0.833**.
+When SC is on the court, the player makes one 2-pt shot and one 3-pt shot with a 2/4 shooting, giving a 0.625 eFG%. When SC is off the court, the player makes two 3-pt shots with a 2/4 shooting, giving a 0.75 eFG%. eFG_Ratio function will calculate the ratio between eFG_on to eFG_off. As such, the *eFG_Ratio* function is expected to spit out 0.625 / 0.75, which is **0.833**.
+
+```python
+# eFG_Ratio test 1
+test_df = pd.DataFrame({'player': ['DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG'],
+                    'h1': ['SC', 'SC', 'SC', 'SC', 'JP', 'JP', 'JP', 'JP'],
+                    'h2': ['DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG'],
+                    'h3': ['B', 'B', 'B', 'B', 'B', 'B', 'B', 'B'],
+                    'h4': ['C', 'C', 'C', 'C', 'C', 'C', 'C', 'C'],
+                    'h5': ['D', 'D', 'D', 'D', 'D', 'D', 'D', 'D'],
+                    'a1': ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E'],
+                    'a2': ['F', 'F', 'F', 'F', 'F', 'F', 'F', 'F'],
+                    'a3': ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'G'],
+                    'a4': ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H'],
+                    'a5': ['I', 'I', 'I', 'I', 'I', 'I', 'I', 'I'],
+                    'event_type': ['shot', 'shot', 'miss', 'miss', 'shot', 'shot', 'miss', 'miss'],
+                    'points': [2, 3, 0, 0, 3, 3, 0, 0],
+                    'team': ['GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW'],
+                    'Home': ['GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW'],
+                    'Away': ['LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'LAL']
+                   })
+test_df
+```
+
+![img9](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img9.png)
+
+```python
+# calculating the eFG_Ratio for the test_df above
+x = eFG_Ratio(test_df, 'SC', 'home', 'GSW')
+print(x)
+0.8333333333333334
+```
+
+```python
+# eFG_Ratio test 2
+test_df = pd.DataFrame({'player': ['DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'LBJ'],
+                    'h1': ['SC', 'SC', 'SC', 'SC', 'JP', 'JP', 'JP', 'JP', 'SC'],
+                    'h2': ['DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG', 'DG'],
+                    'h3': ['B', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'J'],
+                    'h4': ['C', 'C', 'C', 'C', 'C', 'C', 'C', 'C', 'K'],
+                    'h5': ['D', 'D', 'D', 'D', 'D', 'D', 'D', 'D', 'L'],
+                    'a1': ['E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'LBJ'],
+                    'a2': ['F', 'F', 'F', 'F', 'F', 'F', 'F', 'F', 'N'],
+                    'a3': ['G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'O'],
+                    'a4': ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'P'],
+                    'a5': ['I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'Q'],
+                    'event_type': ['shot', 'shot', 'miss', 'miss', 'shot', 'shot', 'miss', 'miss', 'shot'],
+                    'points': [2, 3, 0, 0, 3, 3, 0, 0, 3],
+                    'team': ['GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'CLE'],
+                    'Home': ['GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW', 'GSW'],
+                    'Away': ['LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'LAL', 'CLE']
+                   })
+test_df
+```
+
+![img10](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img10.png)
+
+```python
+x = eFG_Ratio(test_df, 'SC', 'home', 'GSW')
+print(x)
+0.8333333333333334
+```
 
 ## Time to plot!
 
