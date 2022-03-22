@@ -98,7 +98,7 @@ test_df
 ```
 
 <p align="center">
-    <img src="https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img4.png" height=500, width=200>
+    <img src="https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img4.png" height=450, width=250>
 </p>
 
 Applying the eFG function to the above data frame should return 0.5 according to the formula.
