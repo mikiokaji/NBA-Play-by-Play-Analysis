@@ -206,7 +206,7 @@ print(x)
 
 ## Time to plot!
 
-We will take a look at the ratio of eFG% ratio of each player from the following teams: Golden State Warriors, Houston Rockets, Cleveland Cavaliers, and Boston Celtics. We will select these four teams for the analysis as they are all winners of the Conference Semifinals in the 2018 NBA playoffs.
+We will take a look at the eFG% ratio of each player from the following teams: Golden State Warriors, Houston Rockets, Cleveland Cavaliers, and Boston Celtics. We will select these four teams for the analysis as they are all winners of the Conference Semifinals in the 2018 NBA playoffs.
 
 By plotting eFG ratio of each player for these teams, we are attempting to understand whether a player's presence on the couurt makes his teammates more effective shooters. Star players like Stephen Curry, LeBron James, and James Harden tend to draw a lot of attention from the other team's defenders, and that attention may give more opportunities for their teammates for a better shot. As an example, Golden State Warriors designs a lot of plays based on making Stephen Curry the decoy on the court, freeing up other shooters like Klay Thompson.
 
