@@ -4,7 +4,6 @@ The use of data and analytics within professional sports has grown massively in 
 
 In this project, we would like to focus on the two following questions:
 1. Do great players make their teammates better?
-2. How does a team best use a "power partnership"?
 
 Some of the star players in today's NBA include LeBron James, Stephen Curry, Kevin Durant, Giannis Antetokounmpo, Nikola Jokic, and so on. A common saying about such star players is that they make their teammates better. To answer the first question, we would want to find evidence from the play-by-play data that supports the notion that star players indeed make their teammates better.
 
