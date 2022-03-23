@@ -2,8 +2,7 @@
 
 The use of data and analytics within professional sports has grown massively in the past several years. Data has become front and center for NBA games where almost every decision made in a game is based on analytics. In this spirit, we will analyze the NBA games' play-by-play data from `bigdataball.com`.
 
-In this project, we would like to focus on the two following questions:
-1. Do great players make their teammates better?
+In this project, we would like to focus on the following question - **do great players make their teammates better?**
 
 Some of the star players in today's NBA include LeBron James, Stephen Curry, Kevin Durant, Giannis Antetokounmpo, Nikola Jokic, and so on. A common saying about such star players is that they make their teammates better. To answer the first question, we would want to find evidence from the play-by-play data that supports the notion that star players indeed make their teammates better.
 
