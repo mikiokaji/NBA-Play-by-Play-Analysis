@@ -30,7 +30,7 @@ Let's test our *filter_on* function. We will only want to filter out the portion
 ```python
 # testing the filter_on function
 x = filter_on(df, 'Stephen Curry', 'away', 'GSW')
-x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
+x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']].head()
 ```
 
 ![img1](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img1.png)
@@ -54,7 +54,7 @@ def filter_off(df, nm, h_o_a, tm):
 ```python
 # testing the filter_off function
 x = filter_off(df, 'Stephen Curry', 'home', 'GSW')
-x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5', 'Home', 'Away']]
+x[['h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5', 'Home', 'Away']].head()
 ```
 
 ![img2](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img2.png)
@@ -70,7 +70,7 @@ def filter_eFG(df, nm = 'name', tm = 'teamAbbrev'):
 ```python
 # testing the filter_eFG function
 x = filter_eFG(df, 'Stephen Curry', 'GSW')
-x[['player', 'event_type', 'team', 'h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']]
+x[['player', 'event_type', 'team', 'h1', 'h2', 'h3', 'h4', 'h5', 'a1', 'a2', 'a3', 'a4', 'a5']].head()
 ```
 
 ![img3](https://github.com/mikiokaji/NBA-Play-by-Play-Analysis/blob/main/images/img3.png)
